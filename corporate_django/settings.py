@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corporate',
     'rest_framework',
     'corsheaders',
+    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [
@@ -124,11 +125,22 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ]
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
-AUTH_USER_MODEL='corporate.User'
+AUTH_USER_MODEL='accounts.User'
 STATIC_ROOT=os.path.join(BASE_DIR, "static/")
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000',
+)
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'corporate_django.utils.my_jwt_response_handler'
+}
