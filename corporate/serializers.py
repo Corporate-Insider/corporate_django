@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import User, Company, Review
+from .models import Company, Review
+from accounts.models import User
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     review_url = serializers.ModelSerializer.serializer_url_field(view_name='review_detail')
@@ -21,12 +22,12 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'review','rating','rated','review_url','user_id','company', 'company_id')
         
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    reviews = ReviewSerializer(many=True, read_only=True)
+# class UserSerializer(serializers.HyperlinkedModelSerializer):
+#     reviews = ReviewSerializer(many=True, read_only=True)
   
-    class Meta:
-        model = User
-        fields = ('id', 'name','email', 'password', 'reviews')
+#     class Meta:
+#         model = User
+#         fields = ('id', 'name','email', 'password', 'reviews')
 
 
 class CompanySerializer(serializers.HyperlinkedModelSerializer):

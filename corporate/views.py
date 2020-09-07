@@ -1,11 +1,9 @@
 from rest_framework import generics
 from .models import User, Review, Company
-from .serializers import UserSerializer, CompanySerializer, ReviewSerializer
+from accounts.serializers import UserSerializer
+from .serializers import CompanySerializer, ReviewSerializer
 
 # Create your views here.
-class UserView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
