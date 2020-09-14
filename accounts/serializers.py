@@ -1,14 +1,14 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from accounts.models import User
-from corporate.serializers import ReviewSerializer
+from corporate.serializers import ReviewSerializer, RatingSerializer
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
-  
+    ratings = RatingSerializer(many=True, read_only=True)
     class Meta:
         model = User
-        fields = ('id', 'name','email', 'password', 'reviews')
+        fields = ('id', 'name','email', 'password', 'reviews', 'ratings')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
