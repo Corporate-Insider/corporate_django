@@ -16,4 +16,7 @@ whitenoise = "*"
 djangorestframework-jwt = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.6.9"
+
+Exit
+
