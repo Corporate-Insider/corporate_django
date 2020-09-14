@@ -13,10 +13,12 @@ class Company(models.Model):
 
 class Review(models.Model):
     review = models.CharField(max_length=500)
-    rating = models.IntegerField()
-    rated = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews', related_query_name='review')
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='reviews', related_query_name='review')
 
     def __str__(self):
         return f'{self.review}'
+class Rating(models.Model):
+    rating = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings', related_query_name='rating')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='ratings', related_query_name='rating')
