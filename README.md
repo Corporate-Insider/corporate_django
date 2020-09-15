@@ -27,6 +27,8 @@ On your terminal,
 
 ```
 run pipenv install
+run pipenv shell to launch your virtual environment
+start the server by running python3 manage.py runserver
 ```
 
 To make sure postgres is running
