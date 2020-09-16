@@ -3,10 +3,6 @@ from .models import Company, Review, Rating
 from accounts.models import User
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
-    company = serializers.HyperlinkedRelatedField(
-        view_name='company_detail',
-        read_only=True
-    )
     user_id = serializers.PrimaryKeyRelatedField(
         queryset = User.objects.all(),
         source = 'user'
@@ -21,10 +17,6 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
         
 
 class RatingSerializer(serializers.HyperlinkedModelSerializer):
-    company = serializers.HyperlinkedRelatedField(
-        view_name='company_detail',
-        read_only=True
-    )
     user_id = serializers.PrimaryKeyRelatedField(
         queryset = User.objects.all(),
         source = 'user'
